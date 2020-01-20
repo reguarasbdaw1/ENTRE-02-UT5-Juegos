@@ -8,7 +8,7 @@ import java.util.Scanner;
  * 
  * Un objeto de esta clase guarda en un array los juegos 
  *
- * @author -
+ * @author - Richard Eguaras
  */
 public class RevistaOnLineJuegos 
 {
