@@ -1,3 +1,4 @@
+
 /**
 * Un objeto de esta clase guarda información relativa a un juego
 * 
@@ -16,15 +17,32 @@ public class Juego {
     */
     public Juego(String linea) 
     {
-            String[] datos = linea.split(":");  
+            
+            String[] datos = linea.split(":");
+            datos[0].toUpperCase();
             titulo = datos[0];
-            genero = datos[1];
-            year = datos[2];
+            switch(datos[1])
+            {
+                case "aventura": genero = genero.AVENTURA;
+                break;
+                case "deporte": genero = genero.DEPORTE;
+                break;
+                case "estrategia": genero = genero.ESTRATEGIA;
+                break;
+                case "rol": genero = genero.ROL;
+                break;
+            }
+            int año = Integer.parseInt(datos[2].trim());
+            year = año;
             valoraciones = new int[10];
+            int aux = 3;
             for(int i = 0; i < 10; i++)
             {
-                valoraciones[i] = 
+                valoraciones[i] = Integer.parseInt(datos[aux].trim());
+                aux++;
             }
+            
+           
     }
 
     /**
@@ -59,23 +77,44 @@ public class Juego {
      * total votos emitidos
      */
     public int getVotos() {
-         
-        return 0;
+        int aux = 0;
+        for(int i = 0; i < 10; i++)
+        {
+          aux += valoraciones[i];
+          
+        }
+        return aux;
     }
 
     /**
      *  obtener valoración media
      */
     public double getValoracionMedia() {
-         
-        return 0;
+        double media = 0;
+        int[] aux;
+        aux = new int[10];
+        for(int i = 0; i < 10; i++)
+        {
+         aux[i] = valoraciones[i] * i;
+         media += aux[i];
+        }
+        media = media / aux.length;
+        return media;
+        
     }
 
     /**
      *  Un usuario puntúa el juego con un valor entre 1 y 10 
      */
-    public void puntuar(int puntuacion) {
-         
+    public void puntuar(int puntuacion) 
+    {
+        for(int i = 0; i < 10; i++)
+        {
+          if (puntuacion == i + 1)
+          {
+            valoraciones[i]++;
+          }
+        }
     }
 
     /**
