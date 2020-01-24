@@ -21,15 +21,15 @@ public class Juego {
             String[] datos = linea.split(":");
             datos[0].toUpperCase();
             titulo = datos[0];
-            switch(datos[1])
+           switch(datos[1])
             {
-                case "aventura": genero = genero.AVENTURA;
+                case "aventura" : genero = genero.valueOf("AVENTURA");
                 break;
-                case "deporte": genero = genero.DEPORTE;
+                case "deporte": genero = genero.valueOf("DEPORTE");
                 break;
-                case "estrategia": genero = genero.ESTRATEGIA;
+                case "estrategia": genero = genero.valueOf("ESTRATEGIA");
                 break;
-                case "rol": genero = genero.ROL;
+                case "rol": genero = genero.valueOf("ROL");
                 break;
             }
             int año = Integer.parseInt(datos[2].trim());

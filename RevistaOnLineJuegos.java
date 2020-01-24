@@ -37,17 +37,7 @@ public class RevistaOnLineJuegos
         return juegos.length == pos;
     }
     
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y   a sample parameter for a method
-     * @return     the sum of x and y
-     */
-    public boolean buscaTitulo(String titulo)
-    {
-        int aux = Arrays.binarySearch(juegos, 0, pos, titulo);
-        return aux >= 0;
-    }
+   
 
     /**
      *    Añade un nuevo juego solo si el array no está completo y no existe otro juego
@@ -66,7 +56,7 @@ public class RevistaOnLineJuegos
         {
             System.out.println("La lista esta completa");
         }
-        if (buscaTitulo(juego.getTitulo())) 
+        if (existeJuego(juego.getTitulo()) >= 0) 
         {
            System.out.println("El juego ya esta en la lista");
         }
@@ -87,9 +77,11 @@ public class RevistaOnLineJuegos
      * recibe como parámetro. Es ndiferente mayúsculas y minúsculas
      * Si existe el juego devuelve su posición, si no existe devuelve -1
      */
-    public int existeJuego(String titulo) {
-
-        return 0;
+    public int existeJuego(String titulo) 
+    {
+        
+        int aux = Arrays.binarySearch(juegos, titulo);
+        return aux;
     }
     /**
      * Representación textual de la revista
@@ -98,9 +90,14 @@ public class RevistaOnLineJuegos
      * (Ver resultados de ejecución)
      */
     public String toString() {
-
+        StringBuilder sb = new StringBuilder();
         
-        return "";
+        for (int i = 0; i < pos; i++)
+        {
+          sb.append(juegos[i].toString());
+        }
+   
+        return sb.toString();
 
     }
 
@@ -110,8 +107,13 @@ public class RevistaOnLineJuegos
      *  La puntuación es un valor entre 1 y 10 (asumimos esto como correcto)
      *  Si el juego no existe se muestra un mensaje en pantalla
      */
-    public void puntuar(String titulo, int puntuacion) {
-
+    public void puntuar(String titulo, int puntuacion) 
+    {
+        int posicion = existeJuego(titulo);
+    
+        int[] valoraciones = juegos[posicion].getValoraciones();
+    
+    
     }
     /**
      * Devuelve un array con los nombres de los juegos 
